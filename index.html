@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Binari Italiani - Il portale personale dedicato ai road trip ferroviari, ai racconti di viaggio e alla passione per le ferrovie storiche e moderne d'Italia.">
+  <title>Binari Italiani | Diario dei miei Viaggi in Treno</title>
+  
+  <!-- Font Google: Montserrat per gli header, Open Sans per la leggibilità del testo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome CDN per icone moderne e curate -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Differenziati: Caricamento condizionale in base alla larghezza dello schermo -->
+  <link rel="stylesheet" href="mobile.css" media="screen and (max-width: 768px)">
+  <link rel="stylesheet" href="desktop.css" media="screen and (min-width: 769px)">
+</head>
+<body>
+
+  <!-- Barra di Navigazione Glassmorphic -->
+  <header class="main-header">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-train-subway"></i>
+        <span>BINARI<span>ITALIANI</span></span>
+      </a>
+      
+      <!-- Hamburger Menu per Mobile -->
+      <button class="menu-toggle" id="mobile-menu-btn" aria-label="Apri menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+      
+      <nav class="nav-menu" id="nav-menu">
+        <ul>
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#linee" class="nav-link">Linee Ferroviarie</a></li>
+          <li><a href="#diari" class="nav-link">Diari di Viaggio</a></li>
+          <li><a href="#mappa-sezione" class="nav-link">Mappa</a></li>
+          <li><a href="#treni-curiosita" class="nav-link">Treni</a></li>
+          <li><a href="#timeline" class="nav-link">Cronologia</a></li>
+          <li><a href="#galleria" class="nav-link">Galleria</a></li>
+          <li><a href="#contatti" class="nav-link btn-contatti">Contatti</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    
+    <!-- Sezione 1: Hero (Accoglienza e Passione) -->
+    <section id="home" class="hero-section">
+      <div class="hero-bg-placeholder">
+        <!-- Spazio dedicato all'immagine o video di sfondo del treno -->
+        <div class="img-placeholder-overlay">
+          <i class="fa-solid fa-panorama placeholder-icon-bg"></i>
+          <p class="placeholder-text-bg">Spazio Immagine Hero (Sfondo) <br><code>images/hero_train.jpg</code> o video <code>videos/hero_train.mp4</code></p>
+        </div>
+      </div>
+      
+      <div class="hero-content scroll-reveal">
+        <div class="badge-adventure">
+          <i class="fa-solid fa-compass"></i> AVVENTURA SU ROTAIA
+        </div>
+        <h1>Sulle Tratte della Bellezza</h1>
+        <p class="hero-subtitle">Racconti, storie ed emozioni lungo le linee ferroviarie più affascinanti d'Italia. Un viaggio lento tra paesaggi alpini, borghi dimenticati e scogliere a picco sul mare.</p>
+        <div class="hero-buttons">
+          <a href="#linee" class="btn btn-primary">Esplora le Linee <i class="fa-solid fa-arrow-right"></i></a>
+          <a href="#diari" class="btn btn-secondary">Leggi i Diari</a>
+        </div>
+      </div>
+      
+      <a href="#linee" class="scroll-down-indicator" aria-label="Scorri giù">
+        <span>Scorri per partire</span>
+        <i class="fa-solid fa-chevron-down animate-bounce"></i>
+      </a>
+    </section>
+
+    <!-- Sezione 2: Le Mie Linee Ferroviarie (Filtri Regionali e Card) -->
+    <section id="linee" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center scroll-reveal">
+          <span class="section-subtitle">Tratte Percorse</span>
+          <h2 class="section-title">Le Linee Ferroviarie</h2>
+          <div class="section-underline"></div>
+          <p class="section-desc">Le vene metalliche che attraversano la nostra penisola. Ognuna con una storia unica da raccontare, pendenze vertiginose e panorami mozzafiato.</p>
+        </div>
+
+        <!-- Filtri per Regione -->
+        <div class="filter-wrapper scroll-reveal">
+          <button class="filter-btn active" data-filter="all">Tutte le Regioni</button>
+          <button class="filter-btn" data-filter="piemonte">Piemonte</button>
+          <button class="filter-btn" data-filter="lombardia">Lombardia</button>
+          <button class="filter-btn" data-filter="toscana">Toscana</button>
+          <button class="filter-btn" data-filter="abruzzo">Abruzzo</button>
+          <button class="filter-btn" data-filter="sicilia">Sicilia</button>
+        </div>
+
+        <!-- Grid delle Linee Ferroviarie -->
+        <div class="lines-grid">
+          
+          <!-- Card 1: Ferrovia Vigezzina-Centovalli (Piemonte) -->
+          <article class="line-card scroll-reveal" data-region="piemonte">
+            <div class="card-img-container">
+              <div class="image-placeholder card-img">
+                <i class="fa-solid fa-mountain-sun placeholder-icon"></i>
+                <span class="placeholder-text">Immagine Vigezzina<br><code>images/vigezzina.jpg</code></span>
+              </div>
+              <span class="card-badge region-badge">Piemonte</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span><i class="fa-solid fa-route"></i> 52 km</span>
+                <span><i class="fa-solid fa-gauge-high"></i> Scartamento Ridotto</span>
+              </div>
+              <h3 class="card-title">Ferrovia Vigezzina-Centovalli</h3>
+              <p class="card-text">Il trenino del foliage. Un tracciato alpino spettacolare che collega Domodossola a Locarno, arrampicandosi tra boschi di castagni, ponti arditi e cascate spumeggianti.</p>
+              <div class="card-footer-info">
+                <span class="emotion-tag"><i class="fa-solid fa-leaf"></i> Autunnale / Romantico</span>
+                <a href="#diari" class="card-link">Leggi di più <i class="fa-solid fa-angle-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Bernina Express (Lombardia / Svizzera) -->
+          <article class="line-card scroll-reveal" data-region="lombardia">
+            <div class="card-img-container">
+              <img src="immagini/treno1.jpg" alt="Ferrovia del Bernina" class="card-img">
+              <span class="card-badge region-badge">Lombardia</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span><i class="fa-solid fa-route"></i> 61 km</span>
+                <span><i class="fa-solid fa-mountain"></i> Pendenza max 70‰</span>
+              </div>
+              <h3 class="card-title">Ferrovia del Bernina</h3>
+              <p class="card-text">Patrimonio dell'Umanità UNESCO. Da Tirano a St. Moritz, salendo dai vigneti valtellinesi ai ghiacciai del Passo del Bernina a 2253 metri, senza cremagliera.</p>
+              <div class="card-footer-info">
+                <span class="emotion-tag"><i class="fa-solid fa-icicles"></i> Epico / Invernale</span>
+                <a href="#diari" class="card-link">Leggi di più <i class="fa-solid fa-angle-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: Ferrovia della Garfagnana (Toscana) -->
+          <article class="line-card scroll-reveal" data-region="toscana">
+            <div class="card-img-container">
+              <div class="image-placeholder card-img">
+                <i class="fa-solid fa-tree placeholder-icon"></i>
+                <span class="placeholder-text">Immagine Garfagnana<br><code>images/garfagnana.jpg</code></span>
+              </div>
+              <span class="card-badge region-badge">Toscana</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span><i class="fa-solid fa-route"></i> 80 km</span>
+                <span><i class="fa-solid fa-archway"></i> Ponti Storici</span>
+              </div>
+              <h3 class="card-title">Ferrovia Lucca-Aulla</h3>
+              <p class="card-text">Un viaggio lento nel cuore verde della Garfagnana, costeggiando il fiume Serchio e oltrepassando l'incredibile Ponte del Diavolo, all'ombra delle Alpi Apuane.</p>
+              <div class="card-footer-info">
+                <span class="emotion-tag"><i class="fa-solid fa-campground"></i> Mistero / Natura</span>
+                <a href="#diari" class="card-link">Leggi di più <i class="fa-solid fa-angle-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Transiberiana d'Italia (Abruzzo) -->
+          <article class="line-card scroll-reveal" data-region="abruzzo">
+            <div class="card-img-container">
+              <div class="image-placeholder card-img">
+                <i class="fa-solid fa-wind placeholder-icon"></i>
+                <span class="placeholder-text">Immagine Sulmona-Carpinone<br><code>images/transiberiana.jpg</code></span>
+              </div>
+              <span class="card-badge region-badge">Abruzzo</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span><i class="fa-solid fa-route"></i> 128 km</span>
+                <span><i class="fa-solid fa-hill-rockslide"></i> Quota 1268m</span>
+              </div>
+              <h3 class="card-title">Transiberiana d'Italia</h3>
+              <p class="card-text">La storica tratta Sulmona-Carpinone. Attraversa l'Appennino centrale superando valichi innevati e parchi nazionali, offrendo panorami di una bellezza disarmante.</p>
+              <div class="card-footer-info">
+                <span class="emotion-tag"><i class="fa-solid fa-snowflake"></i> Innevato / Storico</span>
+                <a href="#diari" class="card-link">Leggi di più <i class="fa-solid fa-angle-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: Circumetnea (Sicilia) -->
+          <article class="line-card scroll-reveal" data-region="sicilia">
+            <div class="card-img-container">
+              <div class="image-placeholder card-img">
+                <i class="fa-solid fa-volcano placeholder-icon"></i>
+                <span class="placeholder-text">Immagine Circumetnea<br><code>images/circumetnea.jpg</code></span>
+              </div>
+              <span class="card-badge region-badge">Sicilia</span>
+            </div>
+            <div class="card-body">
+              <div class="card-meta">
+                <span><i class="fa-solid fa-route"></i> 110 km</span>
+                <span><i class="fa-solid fa-fire"></i> Tracciato Lavico</span>
+              </div>
+              <h3 class="card-title">Ferrovia Circumetnea</h3>
+              <p class="card-text">Il periplo a scartamento ridotto dell'Etna. Un viaggio suggestivo tra colate laviche nere, piantagioni di pistacchio di Bronte e antiche stazioni in pietra basaltica.</p>
+              <div class="card-footer-info">
+                <span class="emotion-tag"><i class="fa-solid fa-sun"></i> Caldo / Vulcanico</span>
+                <a href="#diari" class="card-link">Leggi di più <i class="fa-solid fa-angle-right"></i></a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione 3: Diari di Viaggio (Racconti Immersivi) -->
+    <section id="diari" class="diari-section section-padding">
+      <div class="container">
+        <div class="section-header text-center scroll-reveal">
+          <span class="section-subtitle">Taccuino di Bordo</span>
+          <h2 class="section-title">Diari di Viaggio</h2>
+          <div class="section-underline"></div>
+          <p class="section-desc">Reportage completi dei miei road trip su rotaia: sensazioni, stazioni sperdute, incontri e il ritmo ipnotico del binario.</p>
+        </div>
+
+        <div class="diari-grid">
+          
+          <!-- Diario 1: Vigezzina -->
+          <div class="diario-card scroll-reveal">
+            <div class="diario-img-placeholder">
+              <i class="fa-solid fa-book-open placeholder-icon-diario"></i>
+              <p class="placeholder-text-diario">Foto Diario: Autunno in Vigezzina <br><code>images/diario_vigezzina.jpg</code></p>
+            </div>
+            <div class="diario-content">
+              <div class="diario-header">
+                <span class="diario-date"><i class="fa-regular fa-calendar"></i> 15 Ottobre 2025</span>
+                <span class="diario-read-time"><i class="fa-regular fa-clock"></i> 6 min lettura</span>
+              </div>
+              <h3 class="diario-title">Il richiamo dell'autunno alpino: due giorni a bordo della Vigezzina</h3>
+              <p class="diario-excerpt">"Il viaggio inizia a Domodossola, sotto una pioggia leggera che rende lucidi i binari. Appena l'elettrotreno blu e bianco si stacca dal capolinea sotterraneo e comincia a salire, la nebbia si dirada rivelando i boschi accesi di giallo e arancione..."</p>
+              <button class="btn btn-text open-diary-btn" data-diary-id="diary-1">Leggi il Diario Integrale <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Diario 2: Circumetnea -->
+          <div class="diario-card scroll-reveal">
+            <div class="diario-img-placeholder">
+              <i class="fa-solid fa-book-open placeholder-icon-diario"></i>
+              <p class="placeholder-text-diario">Foto Diario: Lava e Pistacchio <br><code>images/diario_etna.jpg</code></p>
+            </div>
+            <div class="diario-content">
+              <div class="diario-header">
+                <span class="diario-date"><i class="fa-regular fa-calendar"></i> 24 Agosto 2025</span>
+                <span class="diario-read-time"><i class="fa-regular fa-clock"></i> 8 min lettura</span>
+              </div>
+              <h3 class="diario-title">Tra lava e pistacchio: il periplo solitario dell'Etna a scartamento ridotto</h3>
+              <p class="diario-excerpt">"Il motore diesel della vecchia 'littorina' ALn 56 sbuffa alla stazione di Catania Borgo. Saliremo fino a quasi mille metri sul livello del mare, girando attorno alla mole fumante dell'Etna. Qui il treno non è solo trasporto, è parte del paesaggio..."</p>
+              <button class="btn btn-text open-diary-btn" data-diary-id="diary-2">Leggi il Diario Integrale <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Diario 3: Transiberiana -->
+          <div class="diario-card scroll-reveal">
+            <div class="diario-img-placeholder">
+              <i class="fa-solid fa-book-open placeholder-icon-diario"></i>
+              <p class="placeholder-text-diario">Foto Diario: Neve a Rivisondoli <br><code>images/diario_abruzzo.jpg</code></p>
+            </div>
+            <div class="diario-content">
+              <div class="diario-header">
+                <span class="diario-date"><i class="fa-regular fa-calendar"></i> 18 Gennaio 2026</span>
+                <span class="diario-read-time"><i class="fa-regular fa-clock"></i> 10 min lettura</span>
+              </div>
+              <h3 class="diario-title">Ghiaccio e vette appenniniche: la Transiberiana d'Italia sotto la bufera</h3>
+              <p class="diario-excerpt">"A Sulmona il termometro segna zero gradi. Quando la storica locomotiva Gr. 740 aggancia le carrozze Centoporte in legno riscaldate a vapore, capisco che sarà un viaggio nel tempo. Salire sugli altopiani d'Abruzzo ricoperti da un metro di neve è magico..."</p>
+              <button class="btn btn-text open-diary-btn" data-diary-id="diary-3">Leggi il Diario Integrale <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione 4: Mappa Interattiva d'Italia (Geolocalizzazione e Tratte) -->
+    <section id="mappa-sezione" class="mappa-section section-padding">
+      <div class="container">
+        <div class="section-header text-center scroll-reveal">
+          <span class="section-subtitle">Esplorazione Visiva</span>
+          <h2 class="section-title">La Mappa dei Viaggi</h2>
+          <div class="section-underline"></div>
+          <p class="section-desc">Passa il mouse sulle regioni evidenziate o clicca per scoprire quali linee storiche ho percorso e visualizzare le relative tratte ferroviarie sulla mappa.</p>
+        </div>
+
+        <div class="mappa-layout">
+          <!-- Mappa SVG Interattiva -->
+          <div class="map-container scroll-reveal">
+            <svg id="italy-svg-map" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+              
+              <!-- Regioni Italiane come poligoni stilizzati moderni -->
+              <g id="regions-group">
+                <!-- Nord Ovest -->
+                <polygon class="map-region interactive-region" data-region="valledaosta" points="85,70 110,70 105,85 85,85" />
+                <polygon class="map-region interactive-region active-traveled" data-region="piemonte" points="50,90 85,90 100,110 95,140 70,145 50,115" />
+                <polygon class="map-region interactive-region" data-region="liguria" points="65,148 95,142 120,155 110,160 75,158" />
+                <!-- Nord Est e Centro Nord -->
+                <polygon class="map-region interactive-region active-traveled" data-region="lombardia" points="105,80 145,80 150,110 135,135 98,135 102,95" />
+                <polygon class="map-region interactive-region" data-region="trentino" points="148,70 180,75 175,100 148,95" />
+                <polygon class="map-region interactive-region" data-region="veneto" points="152,102 178,102 195,90 205,110 185,145 148,138" />
+                <polygon class="map-region interactive-region" data-region="friuli" points="200,85 225,85 230,105 208,115" />
+                <polygon class="map-region interactive-region" data-region="emiliaromagna" points="115,138 180,138 210,160 180,175 130,152" />
+                <!-- Centro -->
+                <polygon class="map-region interactive-region active-traveled" data-region="toscana" points="125,160 165,155 180,185 160,215 130,195" />
+                <polygon class="map-region interactive-region" data-region="marche" points="183,175 205,170 220,200 198,210" />
+                <polygon class="map-region interactive-region" data-region="umbria" points="172,190 190,188 190,208 168,212" />
+                <polygon class="map-region interactive-region" data-region="lazio" points="155,220 188,212 215,245 195,265 170,250" />
+                <polygon class="map-region interactive-region active-traveled" data-region="abruzzo" points="195,212 225,210 238,230 210,240" />
+                <polygon class="map-region interactive-region" data-region="molise" points="220,242 235,238 245,250 230,255" />
+                <!-- Sud e Isole -->
+                <polygon class="map-region interactive-region" data-region="campania" points="198,268 230,258 255,285 228,305 210,288" />
+                <polygon class="map-region interactive-region" data-region="puglia" points="238,252 265,248 305,285 285,305 248,265" />
+                <polygon class="map-region interactive-region" data-region="basilicata" points="245,282 268,280 268,298 240,305" />
+                <polygon class="map-region interactive-region" data-region="calabria" points="235,308 255,308 268,360 250,370 235,340" />
+                <polygon class="map-region interactive-region active-traveled" data-region="sicilia" points="170,380 225,375 215,415 180,410" />
+                <polygon class="map-region interactive-region" data-region="sardegna" points="70,210 95,210 98,265 75,270" />
+              </g>
+              
+              <!-- Linee ferroviarie tracciate sulla mappa -->
+              <g id="map-railways">
+                <!-- Linea Vigezzina (Piemonte) -->
+                <path class="map-rail-line" data-linked-region="piemonte" d="M 68,110 L 80,100 L 92,95" />
+                <!-- Linea Bernina (Lombardia) -->
+                <path class="map-rail-line" data-linked-region="lombardia" d="M 125,90 L 138,82 L 146,80" />
+                <!-- Linea Garfagnana (Toscana) -->
+                <path class="map-rail-line" data-linked-region="toscana" d="M 140,165 L 148,178 L 152,192" />
+                <!-- Transiberiana d'Italia (Abruzzo) -->
+                <path class="map-rail-line" data-linked-region="abruzzo" d="M 205,225 L 218,220 L 225,232" />
+                <!-- Circumetnea (Sicilia) -->
+                <path class="map-rail-line" data-linked-region="sicilia" d="M 195,385 A 12,12 0 1,1 210,395 Z" />
+                
+                <!-- Linee dorsali di collegamento (Estetiche) -->
+                <path class="map-rail-trunk" d="M 75,115 L 115,110 L 155,142 L 158,180 L 175,235 L 218,285 L 248,340" />
+              </g>
+            </svg>
+          </div>
+          
+          <!-- Pannello delle informazioni dinamiche -->
+          <div class="map-info-panel scroll-reveal" id="map-info-panel">
+            <div class="panel-header">
+              <i class="fa-solid fa-map-location-dot"></i>
+              <h3 id="panel-region-name">Regioni Esplorate</h3>
+            </div>
+            <div class="panel-body" id="panel-region-content">
+              <p class="panel-welcome-text">Passa il cursore su una delle regioni evidenziate in arancione per scoprire i percorsi effettuati, oppure selezionale direttamente sul tuo smartphone.</p>
+              <div class="panel-stats" style="display: none;">
+                <div class="stat-item">
+                  <span class="stat-num" id="panel-stat-lines">0</span>
+                  <span class="stat-label">Linee Visitate</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-num" id="panel-stat-km">0 km</span>
+                  <span class="stat-label">Percorsi Totali</span>
+                </div>
+              </div>
+              <div class="panel-lines-list" id="panel-lines-list" style="display: none;">
+                <h4>Linee in questa regione:</h4>
+                <ul id="panel-lines-ul">
+                  <!-- Inserito dinamicamente tramite JS -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione 5: Treni e Curiosità (Carosello Automatico) -->
+    <section id="treni-curiosita" class="section-padding dark-bg">
+      <div class="container">
+        <div class="section-header text-center scroll-reveal">
+          <span class="section-subtitle">Archeologia e Tecnologia Ferroviaria</span>
+          <h2 class="section-title text-white">Treni e Curiosità</h2>
+          <div class="section-underline"></div>
+          <p class="section-desc text-gray">Non solo binari: un viaggio ravvicinato tra le locomotive leggendarie, le storiche carrozze in legno e i segreti della tecnica ferroviaria.</p>
+        </div>
+
+        <!-- Carosello automatico di Treni -->
+        <div class="carousel-container scroll-reveal">
+          <button class="carousel-control prev-btn" id="carousel-prev" aria-label="Precedente">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          
+          <div class="carousel-viewport" id="carousel-viewport">
+            <div class="carousel-scroller scroller" id="carousel-scroller">
+              
+              <!-- Slide 1: ALn 668 -->
+              <div class="carousel-slide entry" id="slide-0">
+                <div class="slide-img-placeholder">
+                  <i class="fa-solid fa-train placeholder-icon-carousel"></i>
+                  <p class="placeholder-text-carousel">Foto Treno: Automotrice ALn 668 <br><code>images/aln668.jpg</code></p>
+                </div>
+                <div class="slide-info">
+                  <span class="slide-tag">AUTOMOTRICI DIESEL</span>
+                  <h3 class="slide-title">Automotrice FS ALn 668</h3>
+                  <p class="slide-text">La leggendaria "Micheline" del trasporto locale italiano. Simbolo indiscusso dei rami secchi e delle ferrovie provinciali, prodotta a partire dagli anni '50. Affidabile, robusta e instancabile, regala tutt'oggi viaggi ricchi di suoni retrò.</p>
+                  <ul class="slide-specs">
+                    <li><strong>Velocità max:</strong> 110 km/h</li>
+                    <li><strong>Motori:</strong> 2 diesel FIAT</li>
+                    <li><strong>Posti a sedere:</strong> 68</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Slide 2: Locomotiva a Vapore Gr. 740 -->
+              <div class="carousel-slide entry" id="slide-1">
+                <div class="slide-img-placeholder">
+                  <i class="fa-solid fa-train-tram placeholder-icon-carousel"></i>
+                  <p class="placeholder-text-carousel">Foto Treno: Vaporiera Gr. 740 <br><code>images/gr740.jpg</code></p>
+                </div>
+                <div class="slide-info">
+                  <span class="slide-tag">TRAZIONE A VAPORE</span>
+                  <h3 class="slide-title">Locomotiva a Vapore Gr. 740</h3>
+                  <p class="slide-text">La gloriosa vaporiera delle ferrovie dello Stato. Progettata nei primi anni del '900 per il traino di pesanti treni merci e passeggeri sulle linee appenniniche più impegnative. Oggi rappresenta il cuore pulsante dei treni storici.</p>
+                  <ul class="slide-specs">
+                    <li><strong>Produzione:</strong> 1911 - 1923</li>
+                    <li><strong>Potenza:</strong> 980 CV</li>
+                    <li><strong>Peso in servizio:</strong> 66 tonnellate</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Slide 3: Carrozze Centoporte -->
+              <div class="carousel-slide entry" id="slide-2">
+                <div class="slide-img-placeholder">
+                  <i class="fa-solid fa-door-closed placeholder-icon-carousel"></i>
+                  <p class="placeholder-text-carousel">Foto Carrozza: Centoporte FS <br><code>images/centoporte.jpg</code></p>
+                </div>
+                <div class="slide-info">
+                  <span class="slide-tag">CARROZZE STORICHE</span>
+                  <h3 class="slide-title">Carrozze Storiche "Centoporte"</h3>
+                  <p class="slide-text">Chiamate così per la presenza di numerosi sportelli esterni (uno per ciascun scompartimento), consentivano una rapida salita e discesa dei viaggiatori. Costruite negli anni '30 con interni in legno lucido, regalano un'atmosfera d'altri tempi.</p>
+                  <ul class="slide-specs">
+                    <li><strong>Periodo d'oro:</strong> Anni '30 - '70</li>
+                    <li><strong>Materiale:</strong> Cassa in metallo, interni in legno</li>
+                    <li><strong>Uso attuale:</strong> Treni storici Fondazione FS</li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Slide 4: Pendolino ETR 450 -->
+              <div class="carousel-slide entry" id="slide-3">
+                <div class="slide-img-placeholder">
+                  <i class="fa-solid fa-bolt placeholder-icon-carousel"></i>
+                  <p class="placeholder-text-carousel">Foto Treno: ETR 450 Pendolino <br><code>images/etr450.jpg</code></p>
+                </div>
+                <div class="slide-info">
+                  <span class="slide-tag">ALTA VELOCITÀ STORICA</span>
+                  <h3 class="slide-title">Pendolino ETR 450</h3>
+                  <p class="slide-text">La rivoluzione italiana dell'assetto variabile. Grazie al rivoluzionario sistema di inclinazione idraulica in curva, ha permesso di aumentare drasticamente la velocità sui binari tradizionali tortuosi, esportando la tecnologia in tutto il mondo.</p>
+                  <ul class="slide-specs">
+                    <li><strong>Velocità max:</strong> 250 km/h</li>
+                    <li><strong>Inclinazione max:</strong> 8° - 10°</li>
+                    <li><strong>Anno di debutto:</strong> 1988</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          
+          <button class="carousel-control next-btn" id="carousel-next" aria-label="Successiva">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+          
+          <!-- Indicatori del Carosello (Dots) -->
+          <div class="carousel-indicators" id="carousel-indicators">
+            <span class="dot active" data-slide="0"></span>
+            <span class="dot" data-slide="1"></span>
+            <span class="dot" data-slide="2"></span>
+            <span class="dot" data-slide="3"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione 6: Timeline dei Viaggi Ferroviari -->
+    <section id="timeline" class="section-padding">
+      <div class="container">
+        <div class="section-header text-center scroll-reveal">
+          <span class="section-subtitle">Il Filo dei Ricordi</span>
+          <h2 class="section-title">Timeline delle Avventure</h2>
+          <div class="section-underline"></div>
+          <p class="section-desc">Il riassunto cronologico dei miei road trip su binario dal debutto fino alle prossime spedizioni in cantiere.</p>
+        </div>
+
+        <div class="timeline-container">
+          
+          <!-- Evento 1 -->
+          <div class="timeline-item left scroll-reveal">
+            <div class="timeline-content">
+              <span class="timeline-date">Giugno 2024</span>
+              <h3 class="timeline-title">La Prima Avventura in Garfagnana</h3>
+              <p class="timeline-desc">Il battesimo del viaggio ferroviario lento. Un weekend tra Lucca e Aulla alla scoperta del ponte del Diavolo e delle fortezze garfagnine.</p>
+            </div>
+          </div>
+
+          <!-- Evento 2 -->
+          <div class="timeline-item right scroll-reveal">
+            <div class="timeline-content">
+              <span class="timeline-date">Ottobre 2024</span>
+              <h3 class="timeline-title">Autunno sulle Centovalli</h3>
+              <p class="timeline-desc">Traversata transfrontaliera da Domodossola a Locarno a caccia dei colori dorati delle Alpi Lepontine. Un'emozione indimenticabile.</p>
+            </div>
+          </div>
+
+          <!-- Evento 3 -->
+          <div class="timeline-item left scroll-reveal">
+            <div class="timeline-content">
+              <span class="timeline-date">Agosto 2025</span>
+              <h3 class="timeline-title">Il Periplo dell'Etna</h3>
+              <p class="timeline-desc">Un viaggio torrido e affascinante a bordo della Circumetnea. Centodieci chilometri di binario scavati direttamente nella lava vulcanica nera.</p>
+            </div>
+          </div>
+
+          <!-- Evento 4 -->
+          <div class="timeline-item right scroll-reveal">
+            <div class="timeline-content">
+              <span class="timeline-date">Gennaio 2026</span>
+              <h3 class="timeline-title">La Transiberiana Innevata</h3>
+              <p class="timeline-desc">La salita dell'Appennino abruzzese sotto una fitta nevicata. Viaggiare al caldo delle storiche carrozze FS in legno ammirando i ghiacciai d'Abruzzo.</p>
+            </div>
+          </div>
+
+          <!-- Evento Prossimo (Futuro) -->
+          <div class="timeline-item left future scroll-reveal">
+            <div class="timeline-content">
+              <span class="timeline-date">Settembre 2026 (In Programma)</span>
+              <h3 class="timeline-title">Prossima Tratta: Ferrovia del Trenino Verde</h3>
+              <p class="timeline-desc">Spedizione programmata in Sardegna lungo la selvaggia linea Mandas-Arbatax, attraversando il cuore incontaminato dell'Ogliastra.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione 7: Galleria Fotografica Immersiva -->
+    <section id="galleria" class="section-padding dark-bg">
+      <div class="container">
+        <div class="section-header text-center scroll-reveal">
+          <span class="section-subtitle">Scatti di Viaggio</span>
+          <h2 class="section-title text-white">Galleria Fotografica</h2>
+          <div class="section-underline"></div>
+          <p class="section-desc text-gray">Un racconto puramente visivo. Istantanee catturate dal finestrino aperto, stazioni abbandonate dal fascino intatto e l'incontro magico tra binario e natura.</p>
+        </div>
+
+        <div class="gallery-grid">
+          
+          <!-- Foto 1 -->
+          <div class="gallery-item scroll-reveal" data-caption="Stazione alpina avvolta dalla nebbia autunnale">
+            <div class="gallery-placeholder">
+              <i class="fa-solid fa-camera placeholder-icon-gallery"></i>
+              <p class="placeholder-text-gallery">Scatto 1: Nebbia in montagna <br><code>images/gallery_1.jpg</code></p>
+            </div>
+            <div class="gallery-overlay">
+              <span class="gallery-tag">MONTAGNA</span>
+              <h4 class="gallery-item-title">Nebbia in Stazione</h4>
+            </div>
+          </div>
+
+          <!-- Foto 2 -->
+          <div class="gallery-item scroll-reveal" data-caption="La littorina Circumetnea che fischia vicino alle piante di fichi d'India">
+            <div class="gallery-placeholder">
+              <i class="fa-solid fa-camera placeholder-icon-gallery"></i>
+              <p class="placeholder-text-gallery">Scatto 2: Littorina Etnea <br><code>images/gallery_2.jpg</code></p>
+            </div>
+            <div class="gallery-overlay">
+              <span class="gallery-tag">SICILIA</span>
+              <h4 class="gallery-item-title">L'Etna sullo Sfondo</h4>
+            </div>
+          </div>
+
+          <!-- Foto 3 -->
+          <div class="gallery-item scroll-reveal animate-span-2" data-caption="Spettacolare viadotto in pietra della Transiberiana d'Italia immerso nel bianco">
+            <div class="gallery-placeholder">
+              <i class="fa-solid fa-camera placeholder-icon-gallery"></i>
+              <p class="placeholder-text-gallery">Scatto 3: Viadotto innevato <br><code>images/gallery_3.jpg</code></p>
+            </div>
+            <div class="gallery-overlay">
+              <span class="gallery-tag">ABRUZZO</span>
+              <h4 class="gallery-item-title">Il Gigante di Pietra</h4>
+            </div>
+          </div>
+
+          <!-- Foto 4 -->
+          <div class="gallery-item scroll-reveal" data-caption="Finestrino abbassato e vento in faccia lungo la linea della Garfagnana">
+            <div class="gallery-placeholder">
+              <i class="fa-solid fa-camera placeholder-icon-gallery"></i>
+              <p class="placeholder-text-gallery">Scatto 4: Finestrino aperto <br><code>images/gallery_4.jpg</code></p>
+            </div>
+            <div class="gallery-overlay">
+              <span class="gallery-tag">DETTAGLI</span>
+              <h4 class="gallery-item-title">Vento dal Finestrino</h4>
+            </div>
+          </div>
+
+          <!-- Foto 5 -->
+          <div class="gallery-item scroll-reveal" data-caption="Antichi binari abbandonati conquistati dalla vegetazione selvatica">
+            <div class="gallery-placeholder">
+              <i class="fa-solid fa-camera placeholder-icon-gallery"></i>
+              <p class="placeholder-text-gallery">Scatto 5: Binario verde <br><code>images/gallery_5.jpg</code></p>
+            </div>
+            <div class="gallery-overlay">
+              <span class="gallery-tag">ARCHEOLOGIA</span>
+              <h4 class="gallery-item-title">Binario Conquistato</h4>
+            </div>
+          </div>
+
+          <!-- Foto 6 -->
+          <div class="gallery-item scroll-reveal" data-caption="Il sole che tramonta riflettendosi sulle rotaie lucide">
+            <div class="gallery-placeholder">
+              <i class="fa-solid fa-camera placeholder-icon-gallery"></i>
+              <p class="placeholder-text-gallery">Scatto 6: Tramonto d'acciaio <br><code>images/gallery_6.jpg</code></p>
+            </div>
+            <div class="gallery-overlay">
+              <span class="gallery-tag">ATMOSFERA</span>
+              <h4 class="gallery-item-title">Riflessi di Rotaie</h4>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sezione 8: Footer Moderno (Contatti del Progetto Originale) -->
+  <footer id="contatti" class="main-footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        
+        <!-- Info Profilo -->
+        <div class="footer-info scroll-reveal">
+          <a href="#" class="logo footer-logo">
+            <i class="fa-solid fa-train-subway"></i>
+            <span>BINARI<span>ITALIANI</span></span>
+          </a>
+          <p class="footer-desc">Il portale dei road trip ferroviari italiani di Davide. Un tributo al viaggio lento, alle locomotive storiche e ai paesaggi d'Italia scoperti dal finestrino di un treno.</p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/db_railphoto/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://github.com" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="mailto:davide@esempio.it" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+          </div>
+        </div>
+
+        <!-- Collegamenti Rapidi -->
+        <div class="footer-links scroll-reveal">
+          <h3>Mappa del Portale</h3>
+          <ul>
+            <li><a href="#home"><i class="fa-solid fa-caret-right"></i> Home</a></li>
+            <li><a href="#linee"><i class="fa-solid fa-caret-right"></i> Linee Ferroviarie</a></li>
+            <li><a href="#diari"><i class="fa-solid fa-caret-right"></i> Diari di Viaggio</a></li>
+            <li><a href="#mappa-sezione"><i class="fa-solid fa-caret-right"></i> Mappa Interattiva</a></li>
+            <li><a href="#treni-curiosita"><i class="fa-solid fa-caret-right"></i> Treni e Curiosità</a></li>
+            <li><a href="#timeline"><i class="fa-solid fa-caret-right"></i> Cronologia</a></li>
+            <li><a href="#galleria"><i class="fa-solid fa-caret-right"></i> Galleria</a></li>
+          </ul>
+        </div>
+
+        <!-- Contatti (Mantenuti e valorizzati) -->
+        <div class="footer-contacts scroll-reveal">
+          <h3>Contatti di Davide</h3>
+          <p class="contacts-intro">Vuoi collaborare per un reportage ferroviario, segnalare una linea storica abbandonata o semplicemente condividere la passione ferroviaria? Scrivimi!</p>
+          <ul class="contacts-list">
+            <li>
+              <i class="fa-solid fa-envelope-open-text"></i>
+              <div>
+                <span>Email principale</span>
+                <a href="mailto:davide.treni@esempio.it">davide.treni@esempio.it</a>
+              </div>
+            </li>
+            <li>
+              <i class="fa-solid fa-phone-volume"></i>
+              <div>
+                <span>Telefono</span>
+                <a href="tel:+39345678910">+39 345 678910</a>
+              </div>
+            </li>
+            <li>
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <span>Base Operativa</span>
+                <p>Torino, Piemonte, Italia</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+    
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+      <div class="container bottom-flex">
+        <p>&copy; 2026 Binari Italiani di Davide. Tutti i diritti riservati.</p>
+        <p class="made-with">Fatto con <i class="fa-solid fa-heart train-heart"></i> e passione per le ferrovie.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal per lettura Diari di Viaggio -->
+  <div class="diary-modal" id="diary-modal" aria-hidden="true" role="dialog">
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal-container">
+      <button class="modal-close-btn" id="modal-close" aria-label="Chiudi finestra"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-content-body" id="modal-body-content">
+        <!-- Inserito dinamicamente tramite JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Script di Animazione ed Interazione -->
+  <script src="engine.js"></script>
+</body>
+</html>

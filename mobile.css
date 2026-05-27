@@ -1,0 +1,983 @@
+/* ==========================================================================
+   BINARI ITALIANI - MOBILE CSS
+   Ottimizzato per schermi <= 768px (Smartphones, Small Tablets)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Variabili & Reset di Base (Coerenti con Desktop)
+   -------------------------------------------------------------------------- */
+:root {
+  --bg-primary: #0a1128;
+  --bg-secondary: #000814;
+  --surface-steel: #1c2541;
+  --surface-slate: #3a506b;
+  --accent-orange: #ff7b00;
+  --accent-red: #d90429;
+  --text-white: #ffffff;
+  --text-gray: #8d99ae;
+  --text-muted: #5c677d;
+  --glass-bg: rgba(10, 17, 40, 0.92);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --font-headers: 'Montserrat', sans-serif;
+  --font-body: 'Open Sans', sans-serif;
+  --border-radius: 12px;
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-white);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.container {
+  padding: 0 1.2rem;
+  width: 100%;
+}
+
+.section-padding {
+  padding: 4rem 0;
+}
+
+.dark-bg {
+  background-color: var(--bg-secondary);
+}
+
+/* Pulsanti su Mobile */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  font-family: var(--font-headers);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-radius: 50px;
+  min-height: 44px; /* Touch target standard */
+  width: 100%; /* I pulsanti si allargano a schermo intero se in griglia */
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--accent-orange);
+  color: var(--text-white);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-white);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--accent-orange);
+  font-family: var(--font-headers);
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.8rem 0; /* Target di tocco esteso verticalmente */
+  min-height: 44px;
+}
+
+/* Intestazioni di Sezione */
+.section-header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+  padding: 0 0.5rem;
+}
+.section-subtitle {
+  font-family: var(--font-headers);
+  color: var(--accent-orange);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+.section-title {
+  font-family: var(--font-headers);
+  font-weight: 800;
+  font-size: 1.85rem;
+}
+.section-underline {
+  width: 50px;
+  height: 3px;
+  background-color: var(--accent-orange);
+  margin: 0.8rem auto;
+  border-radius: 2px;
+}
+.section-desc {
+  font-size: 0.95rem;
+  color: var(--text-gray);
+  font-weight: 300;
+}
+
+/* Placeholder Immagini */
+.image-placeholder {
+  background: linear-gradient(135deg, #1c2541 0%, #000814 100%);
+  border: 1px dashed rgba(255, 123, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+.placeholder-icon {
+  font-size: 2rem;
+  color: var(--accent-orange);
+  margin-bottom: 0.4rem;
+}
+.placeholder-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+.placeholder-text code {
+  color: var(--accent-orange);
+  font-family: monospace;
+}
+
+/* --------------------------------------------------------------------------
+   2. Header & Menu Hamburger (Slide-in Mobile)
+   -------------------------------------------------------------------------- */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-container {
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--text-white);
+  font-family: var(--font-headers);
+  font-weight: 800;
+  font-size: 1.15rem;
+}
+.logo i {
+  color: var(--accent-orange);
+  font-size: 1.3rem;
+}
+.logo span span {
+  color: var(--accent-orange);
+  font-weight: 300;
+}
+
+/* Pulsante Hamburger */
+.menu-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+.menu-toggle .bar {
+  width: 100%;
+  height: 2px;
+  background-color: var(--text-white);
+  border-radius: 2px;
+  transition: var(--transition-smooth);
+}
+
+/* Hamburger Animato in "X" */
+.menu-toggle.open .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Menu di Navigazione Mobile (Slide-in) */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 75%;
+  height: 100vh;
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+  padding: 6rem 2rem 2rem;
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.4);
+  border-left: 1px solid var(--glass-border);
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-menu.open {
+  right: 0;
+}
+
+.nav-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-gray);
+  font-family: var(--font-headers);
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: block;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.nav-link.active {
+  color: var(--accent-orange);
+  border-bottom-color: rgba(255, 123, 0, 0.3);
+}
+
+.btn-contatti {
+  border: 1px solid rgba(255, 123, 0, 0.4);
+  padding: 0.6rem 1.2rem !important;
+  border-radius: 50px;
+  color: var(--accent-orange) !important;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   3. Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  height: calc(100dvh - 60px); /* 100% viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 60px;
+  text-align: center;
+}
+
+.hero-bg-placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.img-placeholder-overlay {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(10, 17, 40, 0.8) 0%, rgba(10, 17, 40, 0.95) 90%),
+              linear-gradient(135deg, #1c2541 0%, #000814 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4rem 1.5rem;
+}
+
+.placeholder-icon-bg {
+  font-size: 3.5rem;
+  color: var(--accent-orange);
+  opacity: 0.15;
+  margin-bottom: 0.5rem;
+}
+.placeholder-text-bg {
+  color: var(--text-muted);
+  font-family: var(--font-headers);
+  font-size: 0.75rem;
+  max-width: 280px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 1.5rem;
+}
+
+.badge-adventure {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: rgba(255, 123, 0, 0.15);
+  color: var(--accent-orange);
+  padding: 0.35rem 0.85rem;
+  border-radius: 50px;
+  font-family: var(--font-headers);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+}
+
+.hero-section h1 {
+  font-family: var(--font-headers);
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-gray);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  font-weight: 300;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.scroll-down-indicator {
+  display: none; /* Rimosso su mobile per salvare spazio */
+}
+
+/* --------------------------------------------------------------------------
+   4. Le Mie Linee Ferroviarie (Card e Filtri)
+   -------------------------------------------------------------------------- */
+.filter-wrapper {
+  display: flex;
+  overflow-x: auto;
+  justify-content: flex-start;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem 0;
+  /* Nascondi scrollbar brutta */
+  scrollbar-width: none;
+}
+.filter-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.filter-btn {
+  background-color: var(--surface-steel);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--text-gray);
+  padding: 0.5rem 1.1rem;
+  border-radius: 50px;
+  font-family: var(--font-headers);
+  font-weight: 600;
+  font-size: 0.8rem;
+  white-space: nowrap; /* Non manda a capo */
+  cursor: pointer;
+}
+.filter-btn.active {
+  background-color: var(--accent-orange);
+  color: var(--text-white);
+}
+
+.lines-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Una colonna su cellulare */
+  gap: 1.8rem;
+}
+
+.line-card {
+  background-color: var(--surface-steel);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-container {
+  position: relative;
+  height: 180px;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-badge {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background-color: rgba(10, 17, 40, 0.9);
+  color: var(--text-white);
+  padding: 0.25rem 0.65rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-family: var(--font-headers);
+  font-weight: 700;
+}
+.region-badge {
+  border-left: 2px solid var(--accent-orange);
+}
+
+.card-body {
+  padding: 1.3rem;
+}
+
+.card-meta {
+  display: flex;
+  gap: 0.8rem;
+  font-size: 0.7rem;
+  color: var(--accent-orange);
+  font-family: var(--font-headers);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-family: var(--font-headers);
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+}
+
+.card-text {
+  color: var(--text-gray);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+.card-footer-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 1rem;
+}
+
+.emotion-tag {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.card-link {
+  font-family: var(--font-headers);
+  color: var(--accent-orange);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.8rem;
+  min-height: 35px;
+  display: flex;
+  align-items: center;
+}
+
+/* Filtro */
+.line-card.filtered-out {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   5. Diari di Viaggio (Racconti)
+   -------------------------------------------------------------------------- */
+.diari-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.diario-card {
+  display: flex;
+  flex-direction: column; /* Stacked verticale su mobile */
+  background-color: rgba(28, 37, 65, 0.4);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.diario-img-placeholder {
+  height: 160px;
+  background: linear-gradient(135deg, #1c2541 0%, #000814 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.placeholder-icon-diario {
+  font-size: 2.5rem;
+  color: var(--accent-orange);
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+}
+.placeholder-text-diario {
+  font-family: var(--font-headers);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.diario-content {
+  padding: 1.5rem;
+}
+
+.diario-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+
+.diario-title {
+  font-family: var(--font-headers);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 0.8rem;
+}
+
+.diario-excerpt {
+  color: var(--text-gray);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   6. Mappa Interattiva d'Italia (Incolonnata su Mobile)
+   -------------------------------------------------------------------------- */
+.mappa-layout {
+  display: flex;
+  flex-direction: column; /* Incolonnato su Mobile */
+  gap: 2rem;
+  background-color: var(--bg-secondary);
+  padding: 1.5rem 1rem;
+  border-radius: var(--border-radius);
+}
+
+.map-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#italy-svg-map {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+}
+
+/* Regioni Mappa */
+.map-region {
+  fill: #151d35;
+  stroke: #222c45;
+  stroke-width: 1.5;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent; /* Target per touch mobile */
+}
+
+/* Regioni in cui abbiamo viaggiato */
+.active-traveled {
+  fill: #1d3352;
+  stroke: rgba(255, 123, 0, 0.4);
+}
+
+.map-region.selected {
+  fill: rgba(255, 123, 0, 0.35) !important;
+  stroke: var(--accent-orange) !important;
+}
+
+/* Tracciati Ferroviari */
+.map-rail-line {
+  fill: none;
+  stroke: var(--accent-orange);
+  stroke-width: 3.5;
+  stroke-dasharray: 5, 4;
+  opacity: 0.6;
+}
+.map-rail-line.highlighted {
+  opacity: 1;
+  stroke-width: 5;
+}
+
+.map-rail-trunk {
+  display: none; /* Nascondi i binari estetici secondari per rendere la mappa pulita su mobile */
+}
+
+/* Pannello Info Mappa */
+.map-info-panel {
+  background-color: var(--surface-steel);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+.panel-header i {
+  color: var(--accent-orange);
+  font-size: 1.4rem;
+}
+.panel-header h3 {
+  font-family: var(--font-headers);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.panel-welcome-text {
+  color: var(--text-gray);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.panel-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-item {
+  background-color: rgba(10, 17, 40, 0.5);
+  padding: 0.8rem;
+  border-radius: 8px;
+}
+.stat-num {
+  font-family: var(--font-headers);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--accent-orange);
+}
+.stat-label {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.panel-lines-list h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+#panel-lines-ul li {
+  padding: 0.7rem 0.8rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 6px;
+}
+#panel-lines-ul li span {
+  font-size: 0.65rem;
+  background-color: var(--accent-orange);
+  color: var(--text-white);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   7. Treni e Curiosità (Carosello Touch su Mobile)
+   -------------------------------------------------------------------------- */
+.carousel-container {
+  position: relative;
+  max-width: 100%;
+  padding: 0; /* Allinea a bordo schermo */
+}
+
+.carousel-viewport {
+  border-radius: 0; /* Rimuovi bordi arrotondati laterali per estetica full-bleed */
+  border-left: none;
+  border-right: none;
+}
+
+.carousel-slide {
+  display: flex;
+  flex-direction: column; /* Verticale su mobile */
+  min-height: auto;
+}
+
+.slide-img-placeholder {
+  height: 180px;
+  border-right: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.placeholder-icon-carousel {
+  font-size: 3rem;
+}
+.placeholder-text-carousel {
+  font-size: 0.75rem;
+}
+
+.slide-info {
+  padding: 1.5rem;
+}
+
+.slide-title {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.slide-text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.slide-specs {
+  grid-template-columns: 1fr; /* Incolonnati i dettagli tecnici */
+  gap: 0.8rem;
+  padding-top: 1rem;
+}
+.slide-specs li {
+  font-size: 0.8rem;
+}
+
+/* Pulsanti Arrow Carosello - Più piccoli ed esterni su mobile */
+.carousel-control {
+  width: 38px;
+  height: 38px;
+  font-size: 0.9rem;
+  background-color: rgba(10, 17, 40, 0.9);
+}
+.prev-btn {
+  left: 0.5rem;
+}
+.next-btn {
+  right: 0.5rem;
+}
+
+.carousel-indicators {
+  bottom: -1.8rem;
+}
+.carousel-indicators .dot {
+  width: 8px;
+  height: 8px;
+}
+.carousel-indicators .dot.active {
+  width: 18px;
+}
+
+/* Cues touch */
+.carousel-container::after {
+  content: 'Scorri lateralmente o usa le frecce';
+  display: block;
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-top: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* --------------------------------------------------------------------------
+   8. Timeline delle Avventure (Allineata a Sinistra su Mobile)
+   -------------------------------------------------------------------------- */
+.timeline-container {
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+/* Sposta la linea verticale a sinistra */
+.timeline-container::after {
+  left: 20px;
+  transform: none;
+}
+
+.timeline-item {
+  width: 100%; /* Larghezza intera */
+  padding: 1rem 1rem 1rem 2.8rem; /* Rilascia spazio a sinistra per la linea */
+  margin-bottom: 1.5rem;
+}
+
+/* Riposiziona i punti di snodo sulla linea a sinistra */
+.timeline-item::after {
+  left: 10px !important;
+  right: auto !important;
+  top: 1.5rem;
+}
+
+.timeline-item.left,
+.timeline-item.right {
+  left: 0;
+  text-align: left; /* Allineamento testo uniforme a sinistra */
+}
+
+.timeline-content {
+  padding: 1.3rem;
+}
+
+/* Rimuovi frecce triangolari laterali su mobile per pulizia visiva */
+.timeline-content::before {
+  display: none;
+}
+
+.timeline-date {
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+.timeline-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+.timeline-desc {
+  font-size: 0.85rem;
+}
+
+/* --------------------------------------------------------------------------
+   9. Galleria Fotografica (Masonry Semplificato su Mobile)
+   -------------------------------------------------------------------------- */
+.gallery-grid {
+  grid-template-columns: repeat(2, 1fr); /* 2 colonne su cellulare */
+  grid-auto-rows: 150px;
+  gap: 0.8rem;
+}
+
+.gallery-placeholder {
+  padding: 1rem;
+}
+
+.placeholder-icon-gallery {
+  font-size: 1.8rem;
+  margin-bottom: 0.3rem;
+}
+.placeholder-text-gallery {
+  font-size: 0.65rem;
+  line-height: 1.3;
+}
+
+.gallery-overlay {
+  padding: 1rem;
+}
+.gallery-tag {
+  font-size: 0.65rem;
+}
+.gallery-item-title {
+  font-size: 0.9rem;
+}
+
+/* Rimuovi i modificatori grid per evitare altezze eccessive su piccoli schermi */
+.animate-span-2 {
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer (Incolonnato a Singola Colonna)
+   -------------------------------------------------------------------------- */
+.footer-top {
+  padding: 3rem 0;
+}
+
+.footer-grid {
+  grid-template-columns: 1fr; /* Singola colonna */
+  gap: 3rem;
+}
+
+.footer-logo {
+  font-size: 1.3rem;
+  justify-content: center;
+}
+.footer-info {
+  text-align: center;
+}
+.footer-desc {
+  font-size: 0.85rem;
+}
+.footer-socials {
+  justify-content: center;
+}
+
+.footer-links,
+.footer-contacts {
+  text-align: left;
+}
+.footer-links h3::after,
+.footer-contacts h3::after {
+  left: 0;
+}
+
+.contacts-list {
+  gap: 1rem;
+}
+.contacts-list li i {
+  font-size: 1.15rem;
+}
+.contacts-list li a,
+.contacts-list li p {
+  font-size: 0.85rem;
+}
+
+.bottom-flex {
+  flex-direction: column; /* Incolonnato */
+  gap: 0.6rem;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   11. Modali e Lightbox
+   -------------------------------------------------------------------------- */
+.modal-content-body {
+  padding: 1.8rem 1.2rem;
+}
+.modal-close-btn {
+  top: 1rem;
+  right: 1rem;
+}
+
+.lightbox-content-container {
+  width: 90%;
+}
+.lightbox-placeholder {
+  height: 250px;
+}
+.lightbox-caption {
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   12. Reveal Animations Disattivate su Mobile per Performance
+   -------------------------------------------------------------------------- */
+.scroll-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
