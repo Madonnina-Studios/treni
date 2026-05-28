@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
   galleryItems.forEach(item => {
     item.addEventListener('click', () => {
       const caption = item.getAttribute('data-caption');
-      const placeholderText = item.querySelector('.placeholder-text-gallery').innerHTML;
+      const imgSrc = item.getAttribute('data-img-src');
       const tag = item.querySelector('.gallery-tag').textContent;
 
       // Crea dinamicamente la struttura modale del Lightbox
@@ -451,10 +451,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lightbox.innerHTML = `
         <button class="modal-close-btn" id="lightbox-close" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
         <div class="lightbox-content-container">
-          <div class="image-placeholder lightbox-placeholder">
-            <i class="fa-solid fa-camera" style="font-size: 4rem; color: var(--accent-orange); margin-bottom: 1rem;"></i>
-            <span style="font-size: 1rem; color: var(--text-gray);">${placeholderText}</span>
-          </div>
+          <img src="${imgSrc}" alt="${caption}" class="lightbox-img">
         </div>
         <div class="lightbox-caption">
           <span style="color: var(--accent-orange); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; display: block; margin-bottom: 0.3rem;">[${tag}]</span>
@@ -581,9 +578,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <p class="modal-diary-subtitle">${data.subtitle}</p>
           <div class="modal-diary-divider"></div>
         </div>
-        <div class="modal-diary-placeholder-img image-placeholder">
-          <i class="fa-solid fa-book-open" style="font-size: 3rem; color: var(--accent-orange); margin-bottom: 0.8rem;"></i>
-          <span style="font-size: 0.85rem; color: var(--text-gray);">Spazio per l'immagine del diario: <code>images/${diaryId}_large.jpg</code></span>
+        <div class="modal-diary-img-container">
+          <img src="immagini/${diaryId}.jpg" alt="${data.title}" class="modal-diary-img" onerror="this.style.display='none'">
         </div>
         <div class="modal-diary-content">
           ${data.content}

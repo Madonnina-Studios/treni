@@ -1721,11 +1721,12 @@ body {
   justify-content: center;
 }
 
-.lightbox-placeholder {
+.lightbox-img {
   width: 100%;
-  height: 450px;
   max-height: 70vh;
+  object-fit: contain;
   border-radius: 12px;
+  box-shadow: var(--shadow-premium);
 }
 
 .lightbox-caption {
@@ -1764,3 +1765,217 @@ body {
 .gallery-grid .scroll-reveal:nth-child(4) { transition-delay: 0.2s; }
 .gallery-grid .scroll-reveal:nth-child(5) { transition-delay: 0.25s; }
 .gallery-grid .scroll-reveal:nth-child(6) { transition-delay: 0.3s; }
+
+/* --------------------------------------------------------------------------
+   14. Stili Immagini Reali (Tag <img>)
+   -------------------------------------------------------------------------- */
+
+/* --- Hero Section Background Image --- */
+.hero-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+.hero-section:hover .hero-bg-img {
+  transform: scale(1.08);
+}
+
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(10, 17, 40, 0.92) 20%,
+    rgba(10, 17, 40, 0.55) 60%,
+    rgba(10, 17, 40, 0.85) 100%
+  );
+}
+
+/* --- Card Immagini Linee Ferroviarie --- */
+.card-img-container {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  display: block;
+}
+.line-card:hover .card-img {
+  transform: scale(1.08);
+}
+
+/* --- Diari di Viaggio Image Container --- */
+.diario-img-container {
+  min-height: 280px;
+  overflow: hidden;
+  position: relative;
+  border-right: 1px solid rgba(255, 123, 0, 0.1);
+}
+
+.diario-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.diario-card:hover .diario-img {
+  transform: scale(1.06);
+}
+
+/* --- Carosello Treni Image Container --- */
+.slide-img-container {
+  overflow: hidden;
+  position: relative;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: var(--bg-secondary);
+}
+
+.slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.carousel-slide:hover .slide-img {
+  transform: scale(1.05);
+}
+
+/* --- Galleria Fotografica Image Container --- */
+.gallery-img-container {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.gallery-item:hover .gallery-img {
+  transform: scale(1.08);
+}
+
+/* --- Modale Diari – Immagine Header --- */
+.modal-diary-img-container {
+  width: 100%;
+  max-height: 380px;
+  overflow: hidden;
+  border-radius: var(--border-radius);
+  margin-bottom: 2rem;
+}
+
+.modal-diary-img {
+  width: 100%;
+  height: 100%;
+  max-height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+
+
+.gallery-grid .scroll-reveal:nth-child(1) { transition-delay: 0.05s; }
+.gallery-grid .scroll-reveal:nth-child(2) { transition-delay: 0.1s; }
+.gallery-grid .scroll-reveal:nth-child(3) { transition-delay: 0.15s; }
+.gallery-grid .scroll-reveal:nth-child(4) { transition-delay: 0.2s; }
+.gallery-grid .scroll-reveal:nth-child(5) { transition-delay: 0.25s; }
+.gallery-grid .scroll-reveal:nth-child(6) { transition-delay: 0.3s; }
+
+
+/* ==========================================================================
+   EFFECT NEON TRICOLORE AD ALTA VISIBILITÀ - BINARI ITALIANI
+   ========================================================================== */
+
+/* 1. Transizione fluida per non far scattare l'effetto */
+.line-card, 
+.diario-card, 
+.gallery-item {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+}
+
+/* 2. Effetto Hover: Bagliore NEON super marcato e visibile a 360° */
+.line-card:hover, 
+.diario-card:hover, 
+.gallery-item:hover {
+  transform: translateY(-6px); /* Un pizzico di elevazione in più */
+  
+  /* Abbiamo ridotto la sfocatura e aggiunto lo 'spread' (il 4° numero) per pompare il colore */
+  box-shadow: 
+    -10px 0px 15px 2px rgba(0, 146, 70, 0.65),  /* Verde Neon deciso (lato sinistro) */
+    0px 0px 12px 3px rgba(255, 255, 255, 0.9),  /* Bianco Neon brillantissimo (centro) */
+    10px 0px 15px 2px rgba(206, 43, 55, 0.65);  /* Rosso Neon deciso (lato destro) */
+}
+
+
+/* ==========================================================================
+   BINARIO SLIM CON SUPPORTO TRENO IN MOVIMENTO 🛤️ 🚂
+   ========================================================================== */
+.section-underline {
+  width: 240px;
+  height: 8px;
+  margin: 35px auto 30px auto; /* Aumentato il margine sopra (35px) per non far scontrare il treno col titolo */
+  position: relative;
+  background: 
+    linear-gradient(90deg, transparent 0%, transparent 30%, #b0b5bc 30%, #b0b5bc 70%, transparent 70%, transparent 100%),
+    linear-gradient(0deg, #e2e8f0 1.5px, transparent 1.5px, transparent 6.5px, #e2e8f0 6.5px);
+  background-size: 14px 8px, 100% 8px;
+  background-repeat: repeat-x, no-repeat;
+}
+
+/* Il contenitore dell'emoji del treno */
+/* Il contenitore dell'emoji del treno (Girato a sinistra!) */
+.section-underline::before {
+  content: '🚂';
+  position: absolute;
+  top: -22px; /* Posiziona il trenino esattamente sopra le rotaie */
+  left: var(--scroll-percent, 0%); /* Pilotato da JavaScript */
+  
+  /* CRUCIAL FIX: aggiungiamo scaleX(-1) per specchiare l'emoji a sinistra e manteniamo translateX(-50%) per centrarlo */
+  transform: translateX(-50%) scaleX(-1); 
+  
+  font-size: 18px;
+  transition: left 0.1s ease-out; /* Rende lo spostamento fluido */
+}
+
+
+/* ==========================================================================
+   SUPER GLOW TRICOLORE AD ALTA VISIBILITÀ PER LA MAPPA 🗺️🇮🇹
+   ========================================================================== */
+.map-container {
+  position: relative;
+  border-radius: 12px; /* Arrotonda leggermente i bordi del contenitore della mappa */
+  transition: box-shadow 0.4s ease; /* Rende tutto fluido se la pagina si carica */
+  padding: 10px;
+  background: transparent;
+
+  /* Il magico triplo neon compatto: Verde a sinistra, Bianco al centro, Rosso a destra */
+  box-shadow: 
+    -12px 0px 20px 2px rgba(0, 146, 70, 0.6),  /* Verde Neon fiero (lato sinistro) */
+    0px 0px 15px 3px rgba(255, 255, 255, 0.85), /* Bianco brillante (centro) */
+    12px 0px 20px 2px rgba(206, 43, 55, 0.6);  /* Rosso Neon fiero (lato destro) */
+}
