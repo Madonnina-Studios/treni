@@ -1,45 +1,27 @@
-name: Deploy Codice su Altervista 🚀
-
+name: Deploy su Altervista con Cache Busting
 on:
   push:
     branches:
       - main
-
 jobs:
-  web-deploy:
-    name: FTP Deploy (Solo Code)
+  deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    # 1. Scarica il codice dal repository GitHub
-    - name: Get latest code
-      uses: actions/checkout@v4
-    
-    # 2. Applica il Cache Busting sul codice per Davide
-    - name: Apply Cache Busting
-      run: |
-        VERSION_TAG="v=${{ github.sha }}"
-        SHORT_TAG=$(echo ${VERSION_TAG} | cut -c1-9)
-        sed -i "s/mobile.css/mobile.css?$SHORT_TAG/g" index.html
-        sed -i "s/desktop.css/desktop.css?$SHORT_TAG/g" index.html
-        sed -i "s/engine.js/engine.js?$SHORT_TAG/g" index.html
-    
-    # 3. Spara su Altervista modificando i parametri di rete per evitare il blocco socket
-    - name: Upload via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        
-        # 🎯 FIX PER ALTERVISTA: Forziamo la sincronizzazione pulita senza protocolli di sicurezza extra
-        protocol: ftp
-        port: 21
-        
-        # Escludiamo al 100% la cartella immagini e i file di sistema
-        exclude: |
-          **/immagini/**
-          **/immagini
-          **/.git*
-          **/.git*/**
-          README.md
+      - name: Checkout del codice
+        uses: actions/checkout@v3
+
+      - name: Cache Busting (Auto-Version)
+        run: |
+          # Sostituisce .js con .js?v=TIMESTAMP e .css con .css?v=TIMESTAMP
+          TIMESTAMP=$(date +%s)
+          sed -i "s/\.js/\.js?v=$TIMESTAMP/g" index.html
+          sed -i "s/\.css/\.css?v=$TIMESTAMP/g" index.html
+
+      - name: Caricamento via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./
+          server-dir: /
