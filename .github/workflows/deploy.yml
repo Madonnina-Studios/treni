@@ -1,0 +1,41 @@
+name: Deploy su Altervista con Cache Busting 🚀
+
+on:
+  push:
+    branches:
+      - main  # ⚠️ Sostituisci con 'master' se la tua branch principale si chiama così
+
+jobs:
+  web-deploy:
+    name: FTP Deploy & Cache Busting
+    runs-on: ubuntu-latest
+    
+    steps:
+    # 1. Scarica il codice dal repository
+    - name: Get latest code
+      uses: actions/checkout@v4
+    
+    # 2. Trucco di Cache Busting: Iniettiamo l'ID del commit come query string nei file CSS/JS
+    - name: Apply Cache Busting
+      run: |
+        # Usiamo l'hash corto del commit di GitHub come stringa univoca di versione (es. v=a1b2c3d)
+        VERSION_TAG="v=${{ github.sha }}"
+        SHORT_TAG=$(echo ${VERSION_TAG} | cut -c1-9)
+        echo "Generato tag di cache busting: $SHORT_TAG"
+        
+        # Sostituisce nel file index.html i caricamenti dei file css e js aggiungendo la query string dinamica
+        sed -i "s/mobile.css/mobile.css?$SHORT_TAG/g" index.html
+        sed -i "s/desktop.css/desktop.css?$SHORT_TAG/g" index.html
+        sed -i "s/engine.js/engine.js?$SHORT_TAG/g" index.html
+    
+    # 3. Spara i file modificati su Altervista tramite FTP
+    - name: Upload via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        exclude: |
+          **/.git*
+          **/.git*/**
+          README.md
