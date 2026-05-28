@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    # 1. Scarica il codice
+    # 1. Scarica il codice dal repository
     - name: Get latest code
       uses: actions/checkout@v4
     
-    # 2. Applica il Cache Busting
+    # 2. Applica il Cache Busting sui file per Davide
     - name: Apply Cache Busting
       run: |
         VERSION_TAG="v=${{ github.sha }}"
@@ -24,7 +24,7 @@ jobs:
         sed -i "s/desktop.css/desktop.css?$SHORT_TAG/g" index.html
         sed -i "s/engine.js/engine.js?$SHORT_TAG/g" index.html
     
-    # 3. Spara i file con la Action standard configurata per Altervista
+    # 3. Spara su Altervista (Ora che gli USA sono abilitati!)
     - name: Upload via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
@@ -32,12 +32,12 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         
-        # PARAMETRI SALVA-VITA PER EVITARE IL BLOCCO SOCKET SU ALTERVISTA
+        # Forza la connessione pulita monocanale
         port: 21
         protocol: ftp
-        stateful: true  # <--- Questo costringe GitHub a usare UN SOLO binario di connessione, senza sovraccaricare Altervista
+        stateful: true
         
-        # Evita di toccare la cartella immagini sul server
+        # Ignora la cartella immagini sul server
         exclude: |
           **/immagini/**
           **/immagini
