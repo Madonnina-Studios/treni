@@ -7,15 +7,15 @@ on:
 
 jobs:
   web-deploy:
-    name: FTP Deploy via LFTP
+    name: FTP Deploy (Solo Code)
     runs-on: ubuntu-latest
     
     steps:
-    # 1. Scarica il codice dal repository GitHub
+    # 1. Scarica il codice
     - name: Get latest code
       uses: actions/checkout@v4
     
-    # 2. Applica il Cache Busting sul codice per Davide
+    # 2. Applica il Cache Busting
     - name: Apply Cache Busting
       run: |
         VERSION_TAG="v=${{ github.sha }}"
@@ -24,27 +24,23 @@ jobs:
         sed -i "s/desktop.css/desktop.css?$SHORT_TAG/g" index.html
         sed -i "s/engine.js/engine.js?$SHORT_TAG/g" index.html
     
-    # 3. Installa lftp e spara i file ignorando chirurgicamente la cartella immagini
-    - name: Deploy via LFTP
-      env:
-        FTP_SERVER: ${{ secrets.FTP_SERVER }}
-        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
-      run: |
-        # Installa il client lftp sulla macchina virtuale di GitHub
-        sudo apt-get update && sudo apt-get install -y lftp
+    # 3. Spara i file con la Action standard configurata per Altervista
+    - name: Upload via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         
-        # Esegue il comando di sincronizzazione specchio (mirror) caricando solo i file modificati
-        # -R: Reverse mirror (upload da locale a remoto)
-        # -x: Esclude i file e le cartelle che non vogliamo toccare
-        lftp -e "
-          set ftp:ssl-allow no;
-          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
-          mirror -R ./ / \
-            --verbose \
-            -x '^immagini/' \
-            -x '^\.git/' \
-            -x '^\.github/' \
-            -x '^README\.md';
-          quit
-        "
+        # PARAMETRI SALVA-VITA PER EVITARE IL BLOCCO SOCKET SU ALTERVISTA
+        port: 21
+        protocol: ftp
+        stateful: true  # <--- Questo costringe GitHub a usare UN SOLO binario di connessione, senza sovraccaricare Altervista
+        
+        # Evita di toccare la cartella immagini sul server
+        exclude: |
+          **/immagini/**
+          **/immagini
+          **/.git*
+          **/.git*/**
+          README.md
