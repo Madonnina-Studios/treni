@@ -1,21 +1,21 @@
-name: Deploy su Altervista con Immagini e Cache Busting 🚀
+name: Deploy Codice su Altervista 🚀
 
 on:
   push:
     branches:
-      - main  # ⚠️ Sostituisci con 'master' se la tua branch principale è master
+      - main
 
 jobs:
   web-deploy:
-    name: FTP Deploy
+    name: FTP Deploy (Solo Code)
     runs-on: ubuntu-latest
     
     steps:
-    # 1. Scarica il codice dal repository
+    # 1. Scarica il codice dal repository GitHub
     - name: Get latest code
       uses: actions/checkout@v4
     
-    # 2. Applica il Cache Busting sui file principali
+    # 2. Applica il Cache Busting sul codice per Davide
     - name: Apply Cache Busting
       run: |
         VERSION_TAG="v=${{ github.sha }}"
@@ -24,18 +24,22 @@ jobs:
         sed -i "s/desktop.css/desktop.css?$SHORT_TAG/g" index.html
         sed -i "s/engine.js/engine.js?$SHORT_TAG/g" index.html
     
-    # 3. Spara TUTTO su Altervista mantenendo la struttura delle cartelle
+    # 3. Spara su Altervista modificando i parametri di rete per evitare il blocco socket
     - name: Upload via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        # 🎯 FORZIAMO IL CARICAMENTO COMPLETO DELLE CARTELLE:
-        server-dir: /
-        local-dir: ./
-        dangerous-clean-slate: false # Evita di cancellare roba a caso sul server
+        
+        # 🎯 FIX PER ALTERVISTA: Forziamo la sincronizzazione pulita senza protocolli di sicurezza extra
+        protocol: ftp
+        port: 21
+        
+        # Escludiamo al 100% la cartella immagini e i file di sistema
         exclude: |
+          **/immagini/**
+          **/immagini
           **/.git*
           **/.git*/**
           README.md
