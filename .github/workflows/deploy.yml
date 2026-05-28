@@ -1,27 +1,50 @@
-name: Deploy su Altervista con Cache Busting
+name: Deploy Codice su Altervista 🚀
+
 on:
   push:
     branches:
       - main
+
 jobs:
-  deploy:
+  web-deploy:
+    name: FTP Deploy via LFTP
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout del codice
-        uses: actions/checkout@v3
-
-      - name: Cache Busting (Auto-Version)
-        run: |
-          # Sostituisce .js con .js?v=TIMESTAMP e .css con .css?v=TIMESTAMP
-          TIMESTAMP=$(date +%s)
-          sed -i "s/\.js/\.js?v=$TIMESTAMP/g" index.html
-          sed -i "s/\.css/\.css?v=$TIMESTAMP/g" index.html
-
-      - name: Caricamento via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-        with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /
+    # 1. Scarica il codice dal repository GitHub
+    - name: Get latest code
+      uses: actions/checkout@v4
+    
+    # 2. Applica il Cache Busting sul codice per Davide
+    - name: Apply Cache Busting
+      run: |
+        VERSION_TAG="v=${{ github.sha }}"
+        SHORT_TAG=$(echo ${VERSION_TAG} | cut -c1-9)
+        sed -i "s/mobile.css/mobile.css?$SHORT_TAG/g" index.html
+        sed -i "s/desktop.css/desktop.css?$SHORT_TAG/g" index.html
+        sed -i "s/engine.js/engine.js?$SHORT_TAG/g" index.html
+    
+    # 3. Installa lftp e spara i file ignorando chirurgicamente la cartella immagini
+    - name: Deploy via LFTP
+      env:
+        FTP_SERVER: ${{ secrets.FTP_SERVER }}
+        FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+        FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+      run: |
+        # Installa il client lftp sulla macchina virtuale di GitHub
+        sudo apt-get update && sudo apt-get install -y lftp
+        
+        # Esegue il comando di sincronizzazione specchio (mirror) caricando solo i file modificati
+        # -R: Reverse mirror (upload da locale a remoto)
+        # -x: Esclude i file e le cartelle che non vogliamo toccare
+        lftp -e "
+          set ftp:ssl-allow no;
+          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
+          mirror -R ./ / \
+            --verbose \
+            -x '^immagini/' \
+            -x '^\.git/' \
+            -x '^\.github/' \
+            -x '^README\.md';
+          quit
+        "
