@@ -12,11 +12,39 @@ document.addEventListener('DOMContentLoaded', () => {
   const navMenu = document.getElementById('nav-menu');
   const navLinks = document.querySelectorAll('.nav-link');
 
+  /* --------------------------------------------------------------------------
+     1b. Logica Cambio Tema (Light / Dark Mode)
+     -------------------------------------------------------------------------- */
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
+
+  if (themeToggleBtn && themeIcon) {
+    // Controlla se 'localStorage.getItem('theme') === 'light'' per applicare subito la classe 'light-mode'
+    if (localStorage.getItem('theme') === 'light') {
+      document.body.classList.add('light-mode');
+      themeIcon.classList.replace('fa-moon', 'fa-sun');
+    }
+
+    // Aggiungi un 'addEventListener' sul click del bottone per il toggle
+    themeToggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light-mode');
+
+      const isLightMode = document.body.classList.contains('light-mode');
+      if (isLightMode) {
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'light');
+      } else {
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  }
+
   if (menuBtn && navMenu) {
     menuBtn.addEventListener('click', () => {
       menuBtn.classList.toggle('open');
       navMenu.classList.toggle('open');
-      
+
       // Impedisci scroll del body quando il menu è aperto
       if (navMenu.classList.contains('open')) {
         document.body.style.overflow = 'hidden';
@@ -121,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       cards.forEach(card => {
         const cardRegion = card.getAttribute('data-region');
-        
+
         if (filterValue === 'all' || cardRegion === filterValue) {
           card.classList.remove('filtered-out');
           // Ritardo leggero per permettere un'animazione fluida di comparsa
@@ -258,7 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Hover mouse (Desktop)
     region.addEventListener('mouseenter', () => {
       if (pinnedRegion) return; // Non sovrascrivere se c'è un pin attivo
-      
+
       clearRailHighlights();
       highlightRailsForRegion(regionId);
       updateInfoPanel(regionId);
@@ -266,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     region.addEventListener('mouseleave', () => {
       if (pinnedRegion) return; // Mantieni le info del pin attivo
-      
+
       clearRailHighlights();
       // Ripristina stato iniziale di benvenuto
       panelRegionName.textContent = "Regioni Esplorate";
@@ -321,7 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.getElementById('carousel-prev');
   const nextBtn = document.getElementById('carousel-next');
   const indicatorsContainer = document.getElementById('carousel-indicators');
-  
+
   if (scroller && prevBtn && nextBtn) {
     const slides = scroller.querySelectorAll('.carousel-slide');
     const dots = indicatorsContainer.querySelectorAll('.dot');
@@ -337,15 +365,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrollToSlide = (index) => {
       if (index < 0) index = slideCount - 1;
       if (index >= slideCount) index = 0;
-      
+
       currentIndex = index;
       const slideWidth = getSlideWidth();
-      
+
       scroller.scrollTo({
         left: slideWidth * index,
         behavior: 'smooth'
       });
-      
+
       updateIndicators(index);
     };
 
@@ -397,10 +425,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Pausa autoplay su hover del mouse (Desktop)
     scroller.addEventListener('mouseenter', stopAutoplay);
     scroller.addEventListener('mouseleave', startAutoplay);
-    
+
     // Pausa su touch (Mobile)
-    scroller.addEventListener('touchstart', stopAutoplay, {passive: true});
-    scroller.addEventListener('touchend', startAutoplay, {passive: true});
+    scroller.addEventListener('touchstart', stopAutoplay, { passive: true });
+    scroller.addEventListener('touchend', startAutoplay, { passive: true });
 
     // Gestione swipe manuale per aggiornare i pallini in tempo reale
     let isScrolling;
@@ -413,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Calcola l'indice approssimato della slide visibile
         const exactIndex = scrollPosition / slideWidth;
         const roundedIndex = Math.round(exactIndex);
-        
+
         // Aggiorna l'indice corrente se differisce per evitare loop infiniti
         if (roundedIndex !== currentIndex && roundedIndex >= 0 && roundedIndex < slideCount) {
           currentIndex = roundedIndex;
@@ -447,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Crea dinamicamente la struttura modale del Lightbox
       const lightbox = document.createElement('div');
       lightbox.classList.add('lightbox-modal');
-      
+
       lightbox.innerHTML = `
         <button class="modal-close-btn" id="lightbox-close" aria-label="Chiudi"><i class="fa-solid fa-xmark"></i></button>
         <div class="lightbox-content-container">
@@ -477,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lightbox.addEventListener('click', (e) => {
         if (e.target === lightbox) closeLightbox();
       });
-      
+
       // ESC key per chiusura
       const escHandler = (e) => {
         if (e.key === 'Escape') {
@@ -616,5 +644,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  /* Nota: lo sfondo cinematico (bgCinematicFade) è gestito interamente via CSS
+     — nessun JS necessario. Zero listener, zero rAF, zero memory footprint. */
 
 });

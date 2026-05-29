@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="it">
- 
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,14 @@
 
 <body>
 
+  <!-- Sfondo Cinematico Cross-Fade (animazione loop CSS) -->
+  <div id="cinematic-bg" class="cinematic-bg" aria-hidden="true">
+    <img src="immagini/treno_sfondo.webp" alt="" class="cinematic-bg-img">
+    <div class="cinematic-bg-overlay"></div>
+  </div>
+
   <!-- Barra di Navigazione Glassmorphic -->
+
   <header class="main-header">
     <div class="nav-container">
       <a href="#" class="logo">
@@ -50,6 +57,11 @@
           <li><a href="#timeline" class="nav-link">Cronologia</a></li>
           <li><a href="#galleria" class="nav-link">Galleria</a></li>
           <li><a href="#contatti" class="nav-link btn-contatti">Contatti</a></li>
+          <li>
+            <button id="theme-toggle" class="btn-theme-toggle" aria-label="Cambia tema">
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </li>
         </ul>
       </nav>
     </div>
