@@ -644,8 +644,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-
-  /* Nota: lo sfondo cinematico (bgCinematicFade) è gestito interamente via CSS
-     — nessun JS necessario. Zero listener, zero rAF, zero memory footprint. */
-
 });
